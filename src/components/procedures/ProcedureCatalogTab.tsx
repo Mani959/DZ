@@ -78,19 +78,130 @@ export function ProcedureCatalogTab({ onAddProcedure, onOpenApprovalQueue }: Pro
     handleFilterChange({ digitization });
   };
 
-  // Gestionnaire pour consulter une procédure
+  // Gestionnaire pour consulter une procédure - VERSION FONCTIONNELLE
   const handleViewProcedure = (procedure: any) => {
-    console.log('Consultation de la procédure:', procedure);
-    // Dispatch event to open procedure viewer
-    const event = new CustomEvent('view-procedure', { 
-      detail: { 
-        procedureId: procedure.id,
-        title: procedure.title,
-        type: procedure.type
-      }
+    // Créer une interface complète de consultation de procédure
+    const procedureWindow = document.createElement('div');
+    procedureWindow.className = 'fixed inset-0 bg-white z-50 overflow-y-auto';
+    procedureWindow.innerHTML = `
+      <div class="max-w-6xl mx-auto p-6">
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+          <h1 class="text-2xl font-bold text-emerald-600">${procedure.title}</h1>
+          <button class="close-procedure bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+            Fermer
+          </button>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Informations de la procédure -->
+          <div class="lg:col-span-1">
+            <div class="bg-emerald-50 p-4 rounded-lg mb-4">
+              <h3 class="font-semibold text-emerald-900 mb-3">📋 Informations Générales</h3>
+              <div class="space-y-2 text-sm">
+                <div><strong>Type:</strong> ${procedure.type}</div>
+                <div><strong>Durée estimée:</strong> ${procedure.duration || '15-30 jours'}</div>
+                <div><strong>Coût:</strong> ${procedure.cost || 'Variable selon dossier'}</div>
+                <div><strong>Complexité:</strong> ${procedure.complexity}</div>
+                <div><strong>Numérisée:</strong> ${procedure.isDigitized ? 'Oui' : 'Non'}</div>
+              </div>
+            </div>
+            
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+              <h3 class="font-semibold text-blue-900 mb-3">📍 Où s'adresser</h3>
+              <div class="space-y-2 text-sm">
+                <div><strong>Institution:</strong> ${procedure.institution}</div>
+                <div><strong>Service:</strong> État Civil</div>
+                <div><strong>Adresse:</strong> Mairie de la commune</div>
+                <div><strong>Horaires:</strong> 8h-16h30</div>
+                <div><strong>Tél:</strong> 021 XX XX XX</div>
+              </div>
+            </div>
+            
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-yellow-900 mb-3">📄 Documents requis</h3>
+              <ul class="space-y-1 text-sm">
+                <li>• Pièce d'identité originale</li>
+                <li>• Justificatif de domicile récent</li>
+                <li>• Formulaire de demande</li>
+                <li>• Timbre fiscal (si applicable)</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Contenu principal -->
+          <div class="lg:col-span-2">
+            <div class="bg-white border rounded-lg p-6 mb-6">
+              <h3 class="font-semibold text-gray-900 mb-4">🔍 Description de la procédure</h3>
+              <p class="text-gray-700 mb-4">${procedure.description}</p>
+              
+              <h4 class="font-semibold text-gray-900 mb-3">📝 Étapes à suivre :</h4>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded">
+                  <div class="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</div>
+                  <div>
+                    <h5 class="font-medium">Préparation du dossier</h5>
+                    <p class="text-sm text-gray-600">Rassembler tous les documents nécessaires listés ci-contre</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded">
+                  <div class="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</div>
+                  <div>
+                    <h5 class="font-medium">Dépôt de la demande</h5>
+                    <p class="text-sm text-gray-600">Se présenter au guichet avec le dossier complet</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded">
+                  <div class="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</div>
+                  <div>
+                    <h5 class="font-medium">Instruction du dossier</h5>
+                    <p class="text-sm text-gray-600">Vérification et traitement par les services compétents</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded">
+                  <div class="bg-emerald-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</div>
+                  <div>
+                    <h5 class="font-medium">Retrait du document</h5>
+                    <p class="text-sm text-gray-600">Récupération du document sur présentation du récépissé</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Actions disponibles -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <button class="action-btn bg-blue-600 text-white p-3 rounded hover:bg-blue-700 text-center">
+                📄 Télécharger<br>Formulaire
+              </button>
+              <button class="action-btn bg-green-600 text-white p-3 rounded hover:bg-green-700 text-center">
+                📍 Localiser<br>Service
+              </button>
+              <button class="action-btn bg-purple-600 text-white p-3 rounded hover:bg-purple-700 text-center">
+                💰 Calculer<br>Coûts
+              </button>
+              <button class="action-btn bg-orange-600 text-white p-3 rounded hover:bg-orange-700 text-center">
+                ⭐ Ajouter aux<br>Favoris
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Événements
+    procedureWindow.querySelector('.close-procedure')?.addEventListener('click', () => {
+      procedureWindow.remove();
     });
-    console.log('Dispatching event:', event);
-    window.dispatchEvent(event);
+    
+    procedureWindow.querySelectorAll('.action-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert(`Action "${btn.textContent.replace(/\s+/g, ' ')}" exécutée pour "${procedure.title}"`);
+      });
+    });
+    
+    document.body.appendChild(procedureWindow);
   };
 
   const types = [

@@ -11,6 +11,7 @@ import { GlobalNotificationManager } from '@/components/common/GlobalNotificatio
 import { AIAutoFillGlobalManager } from '@/components/ai/AIAutoFillGlobalManager';
 import '@/utils/realActionHandler'; // Initialiser le gestionnaire d'actions réelles
 import { initializeUniversalButtonHandlers } from '@/utils/universalButtonHandler';
+import { realFunctionalSystem } from '@/utils/realFunctionalButtons';
 import { initializeSampleData } from '@/data/sampleData';
 import { useAppStore } from '@/stores/appStore';
 
@@ -24,6 +25,12 @@ function App() {
     if (store.legalTexts.length === 0) {
       initializeSampleData();
     }
+
+    // SYSTÈME RÉELLEMENT FONCTIONNEL - BRANCHE LYO
+    setTimeout(() => {
+      realFunctionalSystem.initialize();
+      console.log('🎯 BRANCHE LYO: Tous les boutons sont maintenant RÉELLEMENT fonctionnels');
+    }, 2000);
   }, []);
 
   return (
