@@ -134,133 +134,102 @@ export class RealFunctionalSystem {
   // MODALES RÉELLES COMME LES COMPOSANTS EXISTANTS
 
   private openLegalSearchModal() {
-    this.createModal('🔍 Recherche Juridique Algérienne', `
-      <div class="space-y-6">
+    this.createSmallWindow('🔍 Recherche Juridique', `
+      <div class="space-y-3">
         <div>
-          <label class="block text-sm font-medium mb-2">Terme de recherche</label>
-          <input type="text" placeholder="Ex: Code de commerce, loi sur les investissements..." 
-                 class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          <input type="text" placeholder="Code de commerce, loi..." 
+                 class="w-full p-2 text-sm border border-gray-300 rounded">
         </div>
         
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Type de texte</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-              <option>Tous les types</option>
-              <option>Lois</option>
-              <option>Ordonnances</option>
-              <option>Décrets exécutifs</option>
-              <option>Arrêtés ministériels</option>
-              <option>Instructions</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">Ministère/Institution</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-              <option>Toutes les institutions</option>
-              <option>Ministère de la Justice</option>
-              <option>Ministère des Finances</option>
-              <option>Ministère du Commerce</option>
-              <option>Ministère de l'Intérieur</option>
-            </select>
-          </div>
+        <div>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Type de texte</option>
+            <option>Lois</option>
+            <option>Ordonnances</option>
+            <option>Décrets</option>
+            <option>Arrêtés</option>
+          </select>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Date de publication</label>
-            <input type="date" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">Journal Officiel N°</label>
-            <input type="text" placeholder="Ex: JO N° 52" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-          </div>
+        <div>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Institution</option>
+            <option>Ministère Justice</option>
+            <option>Ministère Finances</option>
+            <option>Ministère Commerce</option>
+          </select>
         </div>
 
-        <div class="flex items-center space-x-4">
-          <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-            <span class="ml-2 text-sm">Textes en vigueur uniquement</span>
+        <div class="space-y-2">
+          <label class="flex items-center text-sm">
+            <input type="checkbox" class="mr-2">
+            En vigueur uniquement
           </label>
-          <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-            <span class="ml-2 text-sm">Recherche dans le contenu</span>
+          <label class="flex items-center text-sm">
+            <input type="checkbox" class="mr-2">
+            Recherche contenu
           </label>
         </div>
         
-        <div class="flex gap-3">
-          <button class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-            🔍 Rechercher
-          </button>
-          <button class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">
-            Réinitialiser
-          </button>
-        </div>
+        <button class="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700">
+          🔍 Rechercher
+        </button>
       </div>
     `);
   }
 
   private openBusinessCreationModal() {
-    this.createModal('🏢 Guide Création d\'Entreprise en Algérie', `
-      <div class="space-y-6">
-        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-          <h3 class="text-lg font-semibold text-emerald-900 mb-2">Guide officiel CNRC</h3>
-          <p class="text-emerald-700">Démarches complètes pour créer votre entreprise en Algérie</p>
+    this.createSmallWindow('🏢 Guide Création Entreprise', `
+      <div class="space-y-3">
+        <div class="bg-emerald-50 p-2 rounded text-sm">
+          <strong>Guide CNRC officiel</strong>
+          <br>Créer votre entreprise en Algérie
         </div>
         
         <div>
-          <label class="block text-sm font-medium mb-2">Type d'entreprise à créer</label>
-          <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500" onchange="this.nextElementSibling.style.display='block'">
-            <option>Choisir le type d'entreprise</option>
-            <option>SARL - Société à Responsabilité Limitée</option>
-            <option>SPA - Société Par Actions</option>
-            <option>EURL - Entreprise Unipersonnelle à Responsabilité Limitée</option>
-            <option>SNC - Société en Nom Collectif</option>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded" onchange="this.nextElementSibling.style.display='block'">
+            <option>Type d'entreprise</option>
+            <option>SARL</option>
+            <option>SPA</option>
+            <option>EURL</option>
             <option>Auto-entrepreneur</option>
           </select>
-          <div style="display:none" class="mt-3 p-3 bg-gray-50 rounded border">
-            <h4 class="font-semibold">SARL - Informations</h4>
-            <p class="text-sm text-gray-600 mt-1">• Capital minimum: 100,000 DA</p>
-            <p class="text-sm text-gray-600">• Nombre d'associés: 2 à 50</p>
-            <p class="text-sm text-gray-600">• Responsabilité limitée aux apports</p>
+          <div style="display:none" class="mt-2 p-2 bg-gray-50 rounded text-xs">
+            <strong>SARL</strong><br>
+            • Capital min: 100,000 DA<br>
+            • 2 à 50 associés
           </div>
         </div>
 
         <div>
-          <label class="block text-sm font-medium mb-2">Wilaya de création</label>
-          <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500" onchange="this.nextElementSibling.style.display='block'">
-            <option>Choisir votre wilaya</option>
-            <option>01 - Adrar</option>
-            <option>02 - Chlef</option>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded" onchange="this.nextElementSibling.style.display='block'">
+            <option>Wilaya</option>
             <option>16 - Alger</option>
-            <option>25 - Constantine</option>
             <option>31 - Oran</option>
-            <option>48 - Relizane</option>
+            <option>25 - Constantine</option>
           </select>
-          <div style="display:none" class="mt-3 p-3 bg-blue-50 rounded border">
-            <h4 class="font-semibold">CNRC Alger - Centre Principal</h4>
-            <p class="text-sm">📍 Palais des Expositions, Pins Maritimes, Alger</p>
-            <p class="text-sm">📞 021 21 79 00 / 021 21 79 01</p>
-            <p class="text-sm">🕒 Dimanche à Jeudi: 8h00 - 16h30</p>
-            <p class="text-sm">✉️ contact@cnrc.org.dz</p>
+          <div style="display:none" class="mt-2 p-2 bg-blue-50 rounded text-xs">
+            <strong>CNRC Alger</strong><br>
+            📍 Pins Maritimes<br>
+            📞 021 21 79 00
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <button class="bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-700 transition-colors">
-            📋 Voir les étapes détaillées
+        <div class="grid grid-cols-2 gap-2">
+          <button class="bg-emerald-600 text-white py-1.5 px-2 rounded text-xs">
+            📋 Étapes
           </button>
-          <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-            📄 Télécharger formulaires
+          <button class="bg-blue-600 text-white py-1.5 px-2 rounded text-xs">
+            📄 Formulaires
           </button>
         </div>
         
-        <div class="grid grid-cols-2 gap-4">
-          <button class="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors">
-            💰 Calculateur de coûts
+        <div class="grid grid-cols-2 gap-2">
+          <button class="bg-purple-600 text-white py-1.5 px-2 rounded text-xs">
+            💰 Coûts
           </button>
-          <button class="bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition-colors">
-            📞 Prendre rendez-vous
+          <button class="bg-orange-600 text-white py-1.5 px-2 rounded text-xs">
+            📞 RDV
           </button>
         </div>
       </div>
@@ -269,150 +238,145 @@ export class RealFunctionalSystem {
 
   private openFormDownloadsModal(buttonText: string) {
     const category = this.detectFormCategory(buttonText);
-    this.createModal(`📄 Téléchargement Formulaires - ${category}`, `
-      <div class="space-y-6">
-        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 class="text-lg font-semibold text-blue-900">Formulaires officiels - ${category}</h3>
-          <p class="text-blue-700 mt-1">Téléchargement direct des formulaires en format PDF remplissable</p>
+    this.createSmallWindow(`📄 Formulaires ${category}`, `
+      <div class="space-y-3">
+        <div class="bg-blue-50 p-2 rounded text-sm">
+          <strong>Formulaires officiels</strong><br>
+          ${category} - Format PDF
         </div>
         
-        <div class="space-y-3">
-          ${this.generateRealFormsList(category)}
-        </div>
-        
-        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-          <div class="flex items-start gap-2">
-            <span class="text-amber-600 mt-0.5">⚠️</span>
+        <div class="space-y-2 max-h-40 overflow-y-auto">
+          <div class="flex items-center justify-between p-2 border border-gray-200 rounded text-xs">
             <div>
-              <h4 class="font-semibold text-amber-900">Informations importantes</h4>
-              <ul class="text-sm text-amber-800 mt-1 space-y-1">
-                <li>• Ces formulaires sont les versions officielles les plus récentes</li>
-                <li>• Vérifiez les dates de validité avant utilisation</li>
-                <li>• Certains formulaires nécessitent une signature électronique</li>
-              </ul>
+              <div class="font-medium">Formulaire M0 - SARL</div>
+              <div class="text-gray-500">2.3 MB • 2024</div>
             </div>
+            <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+              📄 PDF
+            </button>
           </div>
+          <div class="flex items-center justify-between p-2 border border-gray-200 rounded text-xs">
+            <div>
+              <div class="font-medium">Statuts type SARL</div>
+              <div class="text-gray-500">1.8 MB • 2024</div>
+            </div>
+            <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+              📄 PDF
+            </button>
+          </div>
+          <div class="flex items-center justify-between p-2 border border-gray-200 rounded text-xs">
+            <div>
+              <div class="font-medium">PV AG constitutive</div>
+              <div class="text-gray-500">1.2 MB • 2024</div>
+            </div>
+            <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+              📄 PDF
+            </button>
+          </div>
+        </div>
+        
+        <div class="bg-amber-50 p-2 rounded text-xs">
+          ⚠️ <strong>Info:</strong> Versions officielles récentes
         </div>
       </div>
     `);
   }
 
   private openUniversalSearchModal() {
-    this.createModal('🔍 Recherche Universelle Dalil.dz', `
-      <div class="space-y-6">
-        <div>
-          <label class="block text-sm font-medium mb-2">Recherche globale</label>
-          <div class="flex gap-2">
-            <input type="text" placeholder="Rechercher dans textes, procédures, actualités..." 
-                   class="flex-1 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-            <button class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors">
-              🔍
-            </button>
-          </div>
+    this.createSmallWindow('🔍 Recherche Universelle', `
+      <div class="space-y-3">
+        <div class="flex gap-1">
+          <input type="text" placeholder="Rechercher..." 
+                 class="flex-1 p-2 text-sm border border-gray-300 rounded">
+          <button class="bg-blue-600 text-white px-3 py-2 rounded text-sm">
+            🔍
+          </button>
         </div>
         
-        <div class="grid grid-cols-3 gap-4">
-          <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-            <input type="checkbox" class="h-4 w-4 text-blue-600" checked>
-            <span class="ml-2 text-sm font-medium">Textes juridiques</span>
+        <div class="space-y-2">
+          <label class="flex items-center text-sm">
+            <input type="checkbox" class="mr-2" checked>
+            Textes juridiques
           </label>
-          <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-            <input type="checkbox" class="h-4 w-4 text-blue-600" checked>
-            <span class="ml-2 text-sm font-medium">Procédures admin</span>
+          <label class="flex items-center text-sm">
+            <input type="checkbox" class="mr-2" checked>
+            Procédures admin
           </label>
-          <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-            <input type="checkbox" class="h-4 w-4 text-blue-600">
-            <span class="ml-2 text-sm font-medium">Actualités</span>
+          <label class="flex items-center text-sm">
+            <input type="checkbox" class="mr-2">
+            Actualités
           </label>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Wilaya</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md">
-              <option>Toutes les wilayas</option>
-              <option>16 - Alger</option>
-              <option>31 - Oran</option>
-              <option>25 - Constantine</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">Période</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md">
-              <option>Toutes les périodes</option>
-              <option>Dernière semaine</option>
-              <option>Dernier mois</option>
-              <option>Dernière année</option>
-            </select>
-          </div>
+        <div class="grid grid-cols-2 gap-2">
+          <select class="p-2 text-sm border border-gray-300 rounded">
+            <option>Wilaya</option>
+            <option>16 - Alger</option>
+            <option>31 - Oran</option>
+          </select>
+          <select class="p-2 text-sm border border-gray-300 rounded">
+            <option>Période</option>
+            <option>Dernière semaine</option>
+            <option>Dernier mois</option>
+          </select>
         </div>
         
-        <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors">
-          🔍 Lancer la recherche avancée
+        <button class="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm">
+          🔍 Recherche avancée
         </button>
       </div>
     `);
   }
 
   private openCreationModal(buttonText: string) {
-    this.createModal(`✨ Nouvelle Création`, `
-      <div class="space-y-6">
-        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-          <h3 class="text-lg font-semibold text-emerald-900">Assistant de création</h3>
-          <p class="text-emerald-700 mt-1">Créer un nouveau contenu dans la plateforme</p>
+    this.createSmallWindow('✨ Nouvelle Création', `
+      <div class="space-y-3">
+        <div class="bg-emerald-50 p-2 rounded text-sm">
+          <strong>Assistant de création</strong><br>
+          Nouveau contenu
         </div>
         
         <div>
-          <label class="block text-sm font-medium mb-2">Type de contenu</label>
-          <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500">
-            <option>Sélectionner le type</option>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Type de contenu</option>
             <option>Texte juridique</option>
             <option>Procédure administrative</option>
             <option>Formulaire</option>
             <option>Article/Actualité</option>
-            <option>Ressource documentaire</option>
           </select>
         </div>
 
         <div>
-          <label class="block text-sm font-medium mb-2">Titre/Nom</label>
-          <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500" 
-                 placeholder="Saisir le titre du contenu...">
+          <input type="text" class="w-full p-2 text-sm border border-gray-300 rounded" 
+                 placeholder="Titre du contenu...">
         </div>
         
         <div>
-          <label class="block text-sm font-medium mb-2">Description</label>
-          <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500" 
-                    placeholder="Description détaillée du contenu..."></textarea>
+          <textarea rows="3" class="w-full p-2 text-sm border border-gray-300 rounded" 
+                    placeholder="Description..."></textarea>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Catégorie</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md">
-              <option>Choisir une catégorie</option>
-              <option>Droit commercial</option>
-              <option>Droit civil</option>
-              <option>Droit administratif</option>
-              <option>Fiscalité</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">Priorité</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md">
-              <option>Normale</option>
-              <option>Élevée</option>
-              <option>Urgente</option>
-            </select>
-          </div>
+        <div class="grid grid-cols-2 gap-2">
+          <select class="p-2 text-sm border border-gray-300 rounded">
+            <option>Catégorie</option>
+            <option>Droit commercial</option>
+            <option>Droit civil</option>
+            <option>Fiscalité</option>
+          </select>
+          <select class="p-2 text-sm border border-gray-300 rounded">
+            <option>Priorité</option>
+            <option>Normale</option>
+            <option>Élevée</option>
+            <option>Urgente</option>
+          </select>
         </div>
         
-        <div class="flex gap-3">
-          <button class="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-700 transition-colors">
-            ✅ Créer le contenu
+        <div class="flex gap-2">
+          <button class="flex-1 bg-emerald-600 text-white py-2 px-3 rounded text-sm">
+            ✅ Créer
           </button>
-          <button class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">
-            💾 Sauvegarder brouillon
+          <button class="px-3 py-2 text-gray-600 border border-gray-300 rounded text-sm">
+            💾 Brouillon
           </button>
         </div>
       </div>
@@ -421,69 +385,57 @@ export class RealFunctionalSystem {
 
   // CRÉATION DE MODALES RÉELLES
 
-  private createModal(title: string, content: string) {
-    // Fermer toute modale existante
-    const existing = document.querySelector('.real-functional-modal');
+  private createSmallWindow(title: string, content: string) {
+    // Fermer toute fenêtre existante
+    const existing = document.querySelector('.real-functional-small-window');
     if (existing) existing.remove();
 
-    // Créer le backdrop de la modale
-    const backdrop = document.createElement('div');
-    backdrop.className = 'real-functional-modal fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4';
+    // Créer une petite fenêtre compacte style nomenclature
+    const smallWindow = document.createElement('div');
+    smallWindow.className = 'real-functional-small-window fixed top-20 right-6 z-50 w-80 max-h-96 overflow-hidden';
     
-    // Créer le contenu de la modale (style identique aux composants Dialog existants)
-    const modal = document.createElement('div');
-    modal.className = 'bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-hidden';
-    modal.innerHTML = `
-      <div class="flex flex-col h-full">
-        <!-- Header -->
-        <div class="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">${title}</h2>
-          <button class="modal-close text-gray-400 hover:text-gray-600 p-1 rounded-md hover:bg-gray-100">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    // Style Card comme dans nomenclature
+    smallWindow.innerHTML = `
+      <div class="bg-white rounded-lg border border-gray-200 shadow-lg">
+        <!-- Header compact -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
+          <h3 class="text-sm font-semibold text-gray-900">${title}</h3>
+          <button class="window-close text-gray-400 hover:text-gray-600 p-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
         </div>
         
-        <!-- Content -->
-        <div class="flex-1 overflow-y-auto p-6">
+        <!-- Content compact -->
+        <div class="p-4 max-h-80 overflow-y-auto">
           ${content}
         </div>
       </div>
     `;
 
-    backdrop.appendChild(modal);
-
     // Événements de fermeture
-    backdrop.querySelector('.modal-close')?.addEventListener('click', () => {
-      backdrop.remove();
+    smallWindow.querySelector('.window-close')?.addEventListener('click', () => {
+      smallWindow.remove();
     });
 
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        backdrop.remove();
+    // Fermeture en cliquant à l'extérieur
+    document.addEventListener('click', (e) => {
+      if (!smallWindow.contains(e.target as Node)) {
+        smallWindow.remove();
       }
-    });
-
-    // Gestion des événements ESC
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        backdrop.remove();
-        document.removeEventListener('keydown', handleEsc);
-      }
-    };
-    document.addEventListener('keydown', handleEsc);
+    }, { once: true });
 
     // Rendre tous les boutons fonctionnels
-    backdrop.querySelectorAll('button:not(.modal-close)').forEach(btn => {
+    smallWindow.querySelectorAll('button:not(.window-close)').forEach(btn => {
       btn.addEventListener('click', () => {
         const action = btn.textContent?.trim() || 'Action';
-        this.showToast(`${action} exécutée avec succès !`);
+        this.showToast(`${action} exécutée !`);
       });
     });
 
-    // Gérer les selects avec affichage conditionnel
-    backdrop.querySelectorAll('select').forEach(select => {
+    // Gérer les selects
+    smallWindow.querySelectorAll('select').forEach(select => {
       select.addEventListener('change', () => {
         const nextDiv = select.nextElementSibling as HTMLElement;
         if (nextDiv && nextDiv.style.display === 'none') {
@@ -492,7 +444,7 @@ export class RealFunctionalSystem {
       });
     });
 
-    document.body.appendChild(backdrop);
+    document.body.appendChild(smallWindow);
   }
 
   // MÉTHODES UTILITAIRES
@@ -507,59 +459,7 @@ export class RealFunctionalSystem {
     return 'Formulaires Généraux';
   }
 
-  private generateRealFormsList(category: string): string {
-    const forms = {
-      'Commerce': [
-        { name: 'Formulaire M0 - Déclaration de création SARL', size: '2.3 MB', date: '2024' },
-        { name: 'Statuts type SARL (Modèle CNRC)', size: '1.8 MB', date: '2024' },
-        { name: 'Procès-verbal AG constitutive', size: '1.2 MB', date: '2024' },
-        { name: 'Déclaration notariée conforme', size: '0.8 MB', date: '2024' },
-        { name: 'Formulaire P0 - Déclaration dirigeant', size: '1.1 MB', date: '2024' }
-      ],
-      'État Civil': [
-        { name: 'Demande acte de naissance (formulaire 12)', size: '0.5 MB', date: '2024' },
-        { name: 'Demande certificat de résidence', size: '0.4 MB', date: '2024' },
-        { name: 'Demande casier judiciaire N°3', size: '0.6 MB', date: '2024' },
-        { name: 'Demande livret de famille', size: '0.7 MB', date: '2024' },
-        { name: 'Déclaration changement domicile', size: '0.3 MB', date: '2024' }
-      ],
-      'Permis et Licences': [
-        { name: 'Demande permis de conduire', size: '1.5 MB', date: '2024' },
-        { name: 'Demande licence d\'importation', size: '2.1 MB', date: '2024' },
-        { name: 'Autorisation d\'exercice commercial', size: '1.7 MB', date: '2024' },
-        { name: 'Demande permis de construire', size: '3.2 MB', date: '2024' },
-        { name: 'Licence d\'exploitation touristique', size: '2.8 MB', date: '2024' }
-      ]
-    };
 
-    const categoryForms = forms[category as keyof typeof forms] || [
-      { name: 'Formulaire générique', size: '1.0 MB', date: '2024' }
-    ];
-    
-    return categoryForms.map(form => `
-      <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="font-medium text-gray-900">${form.name}</h4>
-            <p class="text-sm text-gray-500">${form.size} • Mis à jour ${form.date}</p>
-          </div>
-        </div>
-        <div class="flex gap-2">
-          <button class="bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700 transition-colors">
-            📄 Télécharger PDF
-          </button>
-          <button class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded text-sm hover:bg-gray-200 transition-colors">
-            👁️ Aperçu
-          </button>
-        </div>
-      </div>
-    `).join('');
-  }
 
   private showToast(message: string) {
     // Créer un toast de notification
@@ -654,100 +554,91 @@ export class RealFunctionalSystem {
   // MODALES SPÉCIALISÉES SUPPLÉMENTAIRES
 
   private openLegalFiltersModal() {
-    this.createModal('🔧 Filtres Textes Juridiques', `
-      <div class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Statut du texte</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md">
-              <option>Tous les statuts</option>
-              <option>En vigueur</option>
-              <option>Abrogé</option>
-              <option>Modifié</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">Année de publication</label>
-            <select class="w-full p-2 border border-gray-300 rounded-md">
-              <option>Toutes les années</option>
-              <option>2024</option>
-              <option>2023</option>
-              <option>2022</option>
-            </select>
-          </div>
+    this.createSmallWindow('🔧 Filtres Juridiques', `
+      <div class="space-y-3">
+        <div>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Statut du texte</option>
+            <option>En vigueur</option>
+            <option>Abrogé</option>
+            <option>Modifié</option>
+          </select>
         </div>
-        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
-          Appliquer les filtres
+        <div>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Année</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+          </select>
+        </div>
+        <button class="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm">
+          Appliquer filtres
         </button>
       </div>
     `);
   }
 
   private openLegalSortModal() {
-    this.createModal('📊 Tri des Textes Juridiques', `
-      <div class="space-y-4">
+    this.createSmallWindow('📊 Tri Juridique', `
+      <div class="space-y-3">
         <div>
-          <label class="block text-sm font-medium mb-2">Trier par</label>
-          <select class="w-full p-3 border border-gray-300 rounded-md">
-            <option>Date de publication (plus récent)</option>
-            <option>Date de publication (plus ancien)</option>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Trier par</option>
+            <option>Date (récent)</option>
+            <option>Date (ancien)</option>
             <option>Titre (A-Z)</option>
             <option>Type de texte</option>
-            <option>Importance</option>
           </select>
         </div>
-        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
-          Appliquer le tri
+        <button class="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm">
+          Appliquer tri
         </button>
       </div>
     `);
   }
 
   private openLegalExportModal() {
-    this.createModal('📤 Export Textes Juridiques', `
-      <div class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium mb-2">Format d'export</label>
-          <div class="space-y-2">
-            <label class="flex items-center">
-              <input type="radio" name="format" class="mr-2" checked>
-              PDF compilé
-            </label>
-            <label class="flex items-center">
-              <input type="radio" name="format" class="mr-2">
-              Excel (.xlsx)
-            </label>
-            <label class="flex items-center">
-              <input type="radio" name="format" class="mr-2">
-              Archive ZIP
-            </label>
-          </div>
+    this.createSmallWindow('📤 Export Juridique', `
+      <div class="space-y-3">
+        <div class="space-y-2">
+          <label class="flex items-center text-sm">
+            <input type="radio" name="format" class="mr-2" checked>
+            PDF compilé
+          </label>
+          <label class="flex items-center text-sm">
+            <input type="radio" name="format" class="mr-2">
+            Excel (.xlsx)
+          </label>
+          <label class="flex items-center text-sm">
+            <input type="radio" name="format" class="mr-2">
+            Archive ZIP
+          </label>
         </div>
-        <button class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
-          Télécharger l'export
+        <button class="w-full bg-green-600 text-white py-2 px-3 rounded text-sm">
+          Télécharger export
         </button>
       </div>
     `);
   }
 
   private openLegalAnalysisModal() {
-    this.createModal('📈 Analyse Juridique', `
-      <div class="space-y-4">
-        <div class="bg-blue-50 p-4 rounded-lg">
-          <h3 class="font-semibold text-blue-900">Analyse automatique des textes</h3>
-          <p class="text-blue-700 text-sm mt-1">Intelligence artificielle pour l'analyse juridique</p>
+    this.createSmallWindow('📈 Analyse Juridique', `
+      <div class="space-y-3">
+        <div class="bg-blue-50 p-2 rounded text-sm">
+          <strong>Analyse IA</strong><br>
+          Intelligence artificielle juridique
         </div>
         <div>
-          <label class="block text-sm font-medium mb-2">Type d'analyse</label>
-          <select class="w-full p-2 border border-gray-300 rounded-md">
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Type d'analyse</option>
             <option>Évolution législative</option>
             <option>Cohérence juridique</option>
             <option>Impact réglementaire</option>
-            <option>Comparaison textes</option>
           </select>
         </div>
-        <button class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700">
-          Lancer l'analyse
+        <button class="w-full bg-purple-600 text-white py-2 px-3 rounded text-sm">
+          Lancer analyse
         </button>
       </div>
     `);
@@ -766,41 +657,35 @@ export class RealFunctionalSystem {
   private openCustomsFormsModal() { this.openFormDownloadsModal('Télécharger douane'); }
 
   private openUniversalFilterModal() {
-    this.createModal('🔧 Filtres Avancés', `
-      <div class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Date de début</label>
-            <input type="date" class="w-full p-2 border border-gray-300 rounded-md">
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">Date de fin</label>
-            <input type="date" class="w-full p-2 border border-gray-300 rounded-md">
-          </div>
+    this.createSmallWindow('🔧 Filtres Avancés', `
+      <div class="space-y-3">
+        <div>
+          <input type="date" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="Date début">
         </div>
-        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
-          Appliquer les filtres
+        <div>
+          <input type="date" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="Date fin">
+        </div>
+        <button class="w-full bg-blue-600 text-white py-2 px-3 rounded text-sm">
+          Appliquer filtres
         </button>
       </div>
     `);
   }
 
   private openEditModal(text: string) {
-    this.createModal(`✏️ Modification`, `
-      <div class="space-y-4">
+    this.createSmallWindow('✏️ Modification', `
+      <div class="space-y-3">
         <div>
-          <label class="block text-sm font-medium mb-2">Élément à modifier</label>
-          <input type="text" value="${text}" class="w-full p-3 border border-gray-300 rounded-md">
+          <input type="text" value="${text}" class="w-full p-2 text-sm border border-gray-300 rounded">
         </div>
         <div>
-          <label class="block text-sm font-medium mb-2">Nouvelles valeurs</label>
-          <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-md" placeholder="Saisir les modifications..."></textarea>
+          <textarea rows="3" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="Modifications..."></textarea>
         </div>
-        <div class="flex gap-3">
-          <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
+        <div class="flex gap-2">
+          <button class="flex-1 bg-green-600 text-white py-2 px-3 rounded text-sm">
             Sauvegarder
           </button>
-          <button class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">
+          <button class="px-3 py-2 text-gray-600 border border-gray-300 rounded text-sm">
             Annuler
           </button>
         </div>
@@ -809,22 +694,23 @@ export class RealFunctionalSystem {
   }
 
   private openShareModal(text: string) {
-    this.createModal(`📤 Partager`, `
-      <div class="space-y-4">
-        <div class="bg-blue-50 p-4 rounded-lg">
-          <h3 class="font-semibold text-blue-900">Partager "${text}"</h3>
+    this.createSmallWindow('📤 Partager', `
+      <div class="space-y-3">
+        <div class="bg-blue-50 p-2 rounded text-sm">
+          <strong>Partager</strong><br>
+          "${text}"
         </div>
-        <div class="grid grid-cols-2 gap-3">
-          <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+        <div class="grid grid-cols-2 gap-2">
+          <button class="bg-blue-600 text-white py-1.5 px-2 rounded text-xs">
             📧 Email
           </button>
-          <button class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
+          <button class="bg-green-600 text-white py-1.5 px-2 rounded text-xs">
             📱 WhatsApp
           </button>
-          <button class="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700">
+          <button class="bg-gray-600 text-white py-1.5 px-2 rounded text-xs">
             🔗 Lien
           </button>
-          <button class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">
+          <button class="bg-red-600 text-white py-1.5 px-2 rounded text-xs">
             📄 PDF
           </button>
         </div>
@@ -833,18 +719,18 @@ export class RealFunctionalSystem {
   }
 
   private openExportModal(text: string) {
-    this.createModal(`📤 Export`, `
-      <div class="space-y-4">
+    this.createSmallWindow('📤 Export', `
+      <div class="space-y-3">
         <div>
-          <label class="block text-sm font-medium mb-2">Format d'export</label>
-          <select class="w-full p-2 border border-gray-300 rounded-md">
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Format export</option>
             <option>PDF</option>
             <option>Word (.docx)</option>
             <option>Excel (.xlsx)</option>
             <option>JSON</option>
           </select>
         </div>
-        <button class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
+        <button class="w-full bg-green-600 text-white py-2 px-3 rounded text-sm">
           Exporter "${text}"
         </button>
       </div>
@@ -852,27 +738,26 @@ export class RealFunctionalSystem {
   }
 
   private openProcedureModal(category: string, description: string) {
-    this.createModal(`📋 Guide ${category}`, `
-      <div class="space-y-4">
-        <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200">
-          <h3 class="font-semibold text-emerald-900">${category}</h3>
-          <p class="text-emerald-700 text-sm mt-1">${description}</p>
+    this.createSmallWindow(`📋 ${category}`, `
+      <div class="space-y-3">
+        <div class="bg-emerald-50 p-2 rounded text-sm">
+          <strong>${category}</strong><br>
+          ${description}
         </div>
         <div>
-          <label class="block text-sm font-medium mb-2">Wilaya</label>
-          <select class="w-full p-2 border border-gray-300 rounded-md">
-            <option>Choisir votre wilaya</option>
+          <select class="w-full p-2 text-sm border border-gray-300 rounded">
+            <option>Wilaya</option>
             <option>16 - Alger</option>
             <option>31 - Oran</option>
             <option>25 - Constantine</option>
           </select>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-          <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
-            📋 Voir procédures
+        <div class="grid grid-cols-2 gap-2">
+          <button class="bg-blue-600 text-white py-1.5 px-2 rounded text-xs">
+            📋 Procédures
           </button>
-          <button class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
-            📄 Télécharger formulaires
+          <button class="bg-green-600 text-white py-1.5 px-2 rounded text-xs">
+            📄 Formulaires
           </button>
         </div>
       </div>
