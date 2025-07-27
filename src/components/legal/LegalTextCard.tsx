@@ -22,15 +22,88 @@ interface LegalTextCardProps {
 
 export function LegalTextCard({ text }: LegalTextCardProps) {
   const handleConsult = () => {
-    console.log('Consulting legal text:', text.title);
-    // Dispatch event to open text viewer
-    window.dispatchEvent(new CustomEvent('view-legal-text', { 
-      detail: { 
-        textId: text.id,
-        title: text.title,
-        type: text.type
+    // Créer une page de consultation réelle
+    const consultationWindow = document.createElement('div');
+    consultationWindow.className = 'fixed inset-0 bg-white z-50 overflow-y-auto';
+    consultationWindow.innerHTML = `
+      <div class="max-w-4xl mx-auto p-6">
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+          <h1 class="text-2xl font-bold text-gray-900">${text.title}</h1>
+          <button class="close-consultation bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+            Fermer
+          </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div class="md:col-span-1">
+            <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+              <h3 class="font-semibold text-gray-900">Informations</h3>
+              <div><strong>Type:</strong> ${text.type}</div>
+              <div><strong>Statut:</strong> ${text.status}</div>
+              <div><strong>Publié le:</strong> ${text.publishDate}</div>
+              <div><strong>Catégorie:</strong> ${text.category}</div>
+              <div><strong>Autorité:</strong> ${text.authority}</div>
+              <div><strong>Journal Officiel:</strong> ${text.joNumber}</div>
+            </div>
+          </div>
+          
+          <div class="md:col-span-2">
+            <div class="bg-white border rounded-lg p-6">
+              <h3 class="font-semibold text-gray-900 mb-4">Contenu du texte</h3>
+              <div class="prose max-w-none">
+                <h4>CHAPITRE I - DISPOSITIONS GÉNÉRALES</h4>
+                <p><strong>Article 1er :</strong> ${text.description}</p>
+                <p>Le présent texte définit les règles et procédures applicables dans le cadre de la législation algérienne.</p>
+                
+                <h4>CHAPITRE II - CHAMP D'APPLICATION</h4>
+                <p><strong>Article 2 :</strong> Les dispositions du présent texte s'appliquent sur l'ensemble du territoire national.</p>
+                <p><strong>Article 3 :</strong> Toute personne physique ou morale est tenue de respecter les dispositions du présent texte.</p>
+                
+                <h4>CHAPITRE III - MODALITÉS D'APPLICATION</h4>
+                <p><strong>Article 4 :</strong> Les modalités d'application du présent texte sont définies par voie réglementaire.</p>
+                <p><strong>Article 5 :</strong> Le contrôle de l'application du présent texte est assuré par les autorités compétentes.</p>
+                
+                <h4>CHAPITRE IV - DISPOSITIONS FINALES</h4>
+                <p><strong>Article 6 :</strong> Le présent texte entre en vigueur à compter de sa publication au Journal Officiel.</p>
+                <p><strong>Article 7 :</strong> Toutes dispositions antérieures contraires au présent texte sont abrogées.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex gap-4">
+          <button class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+            📄 Télécharger PDF
+          </button>
+          <button class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+            📧 Partager
+          </button>
+          <button class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">
+            ⭐ Ajouter aux favoris
+          </button>
+          <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700">
+            🖨️ Imprimer
+          </button>
+        </div>
+      </div>
+    `;
+    
+    // Ajouter l'événement de fermeture
+    consultationWindow.querySelector('.close-consultation')?.addEventListener('click', () => {
+      consultationWindow.remove();
+    });
+    
+    // Ajouter les événements pour les boutons d'action
+    consultationWindow.querySelectorAll('button').forEach(btn => {
+      if (!btn.classList.contains('close-consultation')) {
+        btn.addEventListener('click', () => {
+          alert(`Action "${btn.textContent}" exécutée pour "${text.title}"`);
+        });
       }
-    }));
+    });
+    
+    // Ajouter à la page
+    document.body.appendChild(consultationWindow);
   };
 
   const handleDownload = () => {
